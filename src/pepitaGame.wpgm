@@ -12,22 +12,35 @@ program PepitaGame {
 	game.ground("suelo.png")
 
 //	VISUALES
-	game.addVisualIn(alpiste, game.at(5,5))
-	game.addVisualIn(manzana, game.at(5,1))
+	game.addVisual(alpiste)
+	game.addVisual(manzana)
 	game.addVisual(buenosAires)
 	game.addVisual(villaGesell)
 	game.addVisual(pepita)
 
 //	TECLADO
-	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
-
-	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
-	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
-
-	keyboard.up().onPressDo { pepita.move(pepita.position().up(1)) }
-	keyboard.down().onPressDo { pepita.move(pepita.position().down(1)) }
-	keyboard.left().onPressDo { pepita.move(pepita.position().left(1)) }
-	keyboard.right().onPressDo { pepita.move(pepita.position().right(1)) }
+	keyboard.h().onPressDo 		{ game.say(pepita, "Hola chiques!") }
+	keyboard.v().onPressDo 		{ if (	pepita.ciudad() == villaGesell
+										and pepita.position() == villaGesell.position()) 
+											{game.say(pepita, "Ya estoy en Villa Gesell")}
+								  else  pepita.volaHacia(villaGesell) 
+								}
+	keyboard.b().onPressDo 		{ if (	pepita.ciudad() == buenosAires 
+										and pepita.position() == buenosAires.position()) 
+											{game.say(pepita, "Ya estoy en Buenos Aires")}
+								  else  pepita.volaHacia(buenosAires) }
+	keyboard.up().onPressDo 	{ pepita.move(pepita.position().up(1)) }
+	keyboard.down().onPressDo 	{ pepita.move(pepita.position().down(1)) }
+	keyboard.left().onPressDo 	{ pepita.move(pepita.position().left(1)) }
+	keyboard.right().onPressDo 	{ pepita.move(pepita.position().right(1)) }
+	keyboard.m().onPressDo 		{ pepita.move(manzana.position())
+								  pepita.come(manzana)
+								  game.removeVisual(manzana)
+	}
+	keyboard.a().onPressDo 		{ pepita.move(alpiste.position())
+								  pepita.come(alpiste)
+								  game.removeVisual(alpiste)
+	}
 		
 //	START
 	game.start()
