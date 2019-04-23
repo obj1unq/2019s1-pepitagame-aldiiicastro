@@ -31,4 +31,7 @@ object pepita {
 		energia -= self.energiaParaVolar(position.distance(nuevaPosicion))
 		self.position(nuevaPosicion)
 	}	
+	method colisionasteCon(persona){
+		persona.alimentar(self)
+	}
 }
