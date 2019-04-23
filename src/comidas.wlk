@@ -2,7 +2,7 @@ import wollok.game.*
 
 object manzana {
 	var property position = game.at(5,1)
-	method image() = "manzana.png"
+	method image() = "Sin título-3.png"
 	method energia() = 80
 }
 
