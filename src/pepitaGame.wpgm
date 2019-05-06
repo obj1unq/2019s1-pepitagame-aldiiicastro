@@ -23,28 +23,16 @@ program PepitaGame {
 	game.whenCollideDo(roque, {cosa => cosa.colisionasteCon(roque)})
 
 //	TECLADO
-	keyboard.h().onPressDo 		{ game.say(pepita, "Hola chiques!") }
-	keyboard.v().onPressDo 		{ if (	pepita.ciudad() == villaGesell
-										and pepita.position() == villaGesell.position()) 
-											{game.say(pepita, "Ya estoy en Villa Gesell")}
-								  else  pepita.volaHacia(villaGesell) 
-								}
-	keyboard.b().onPressDo 		{ if (	pepita.ciudad() == buenosAires 
-										and pepita.position() == buenosAires.position()) 
-											{game.say(pepita, "Ya estoy en Buenos Aires")}
-								  else  pepita.volaHacia(buenosAires) }
-	keyboard.up().onPressDo 	{ roque.move(roque.position().up(1)) }
-	keyboard.down().onPressDo 	{ roque.move(roque.position().down(1)) }
-	keyboard.left().onPressDo 	{ roque.move(roque.position().left(1)) }
-	keyboard.right().onPressDo 	{ roque.move(roque.position().right(1)) }
-	keyboard.m().onPressDo 		{ pepita.move(manzana.position())
-								  pepita.come(manzana)
-								  game.removeVisual(manzana)
-	}
-	keyboard.a().onPressDo 		{ pepita.move(alpiste.position())
-								  pepita.come(alpiste)
-								  game.removeVisual(alpiste)
-	}
+	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
+	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
+	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
+	keyboard.up().onPressDo { roque.move(roque.position().up(1)) }
+	keyboard.down().onPressDo { roque.move(roque.position().down(1)) }
+	keyboard.left().onPressDo { roque.move(roque.position().left(1)) }
+	keyboard.right().onPressDo { roque.move(roque.position().right(1)) }
+	keyboard.m().onPressDo {pepita.volaYCome(manzana)}
+	keyboard.a().onPressDo {pepita.volaYCome(alpiste)}
+
 		
 //	START
 	game.start()
