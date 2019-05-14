@@ -13,25 +13,33 @@ program PepitaGame {
 	game.ground("suelo.png")
 
 //	VISUALES
-	game.addVisual(alpiste)
-	game.addVisual(manzana)
+	game.addVisual(new Alpiste(cantDeGranos = 10 ))
+	game.addVisual(new Manzana())
 	game.addVisual(buenosAires)
 	game.addVisual(villaGesell)
 	game.addVisual(pepita)
 	game.addVisual(roque)
 	
-	game.whenCollideDo(roque, {cosa => cosa.colisionasteCon(roque)})
+//	game.whenCollideDo(roque, {cosa => cosa.colisionasteCon(roque)}) Parte 3 no lo necesita.
+	game.whenCollideDo(pepita, {cosa =>cosa.colisionasteCon(pepita)})
 
 //	TECLADO
+	//Pepita
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
-	keyboard.up().onPressDo { roque.move(roque.position().up(1)) }
+	keyboard.w().onPressDo { pepita.move(pepita.position().up(1))}
+	keyboard.s().onPressDo { pepita.move(pepita.position().down(1))}
+	keyboard.a().onPressDo { pepita.move(pepita.position().left(1))}
+	keyboard.d().onPressDo { pepita.move(pepita.position().right(1))}
+	
+	//Roque
+	keyboard.up().onPressDo   { roque.move(roque.position().up(1)) }
 	keyboard.down().onPressDo { roque.move(roque.position().down(1)) }
 	keyboard.left().onPressDo { roque.move(roque.position().left(1)) }
-	keyboard.right().onPressDo { roque.move(roque.position().right(1)) }
-	keyboard.m().onPressDo {pepita.volaYCome(manzana)}
-	keyboard.a().onPressDo {pepita.volaYCome(alpiste)}
+	keyboard.right().onPressDo{ roque.move(roque.position().right(1)) }
+	keyboard.m().onPressDo 	  { roque.dejar(new Manzana())}
+	keyboard.l().onPressDo 	  { roque.dejar(new Alpiste())}
 
 		
 //	START

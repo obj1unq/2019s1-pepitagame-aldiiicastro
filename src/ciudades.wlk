@@ -6,7 +6,7 @@ object villaGesell {
 	
 	method nombre() = "Villa Gesell"
 	method colisionasteCon(persona){
-		
+		//No hace nada
 	}
 }
 
@@ -16,6 +16,6 @@ object buenosAires {
 	
 	method nombre() = "Buenos Aires"
 	method colisionasteCon(persona){
-		
+		//No hace nada
 	}
 }
